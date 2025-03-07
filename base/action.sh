@@ -21,7 +21,7 @@ if [ $result -gt 0 ]; then
     echo "[-] Stopping Frida-server..."
     busybox kill -9 $result
 else
-    echo "[-] Starting Frida server..."
+    echo "[-] Starting Frida server on port 21 ..."
     frida-server -D
 fi
 
