@@ -53,8 +53,8 @@ def extract_file(archive_path: Path, dest_path: Path):
 
 
 def create_module_prop(path: Path, project_tag: str):
-    module_prop = f"""id=magisk-frida
-name=MagiskFrida
+    module_prop = f"""id=magisk-f21da
+name=MagiskF21da
 version={project_tag}
 versionCode={project_tag.replace(".", "").replace("-", "")}
 author=ViRb3 & enovella
@@ -88,7 +88,7 @@ def fill_module(arch: str, frida_tag: str, project_tag: str):
     download_file(frida_download_url + frida_server, frida_server_path)
     files_dir = PATH_BUILD_TMP.joinpath("files")
     files_dir.mkdir(exist_ok=True)
-    extract_file(frida_server_path, files_dir.joinpath(f"frida-server-{arch}"))
+    extract_file(frida_server_path, files_dir.joinpath(f"f21da-server-{arch}"))
 
 
 def create_updater_json(project_tag: str):
@@ -97,8 +97,8 @@ def create_updater_json(project_tag: str):
     updater = {
         "version": project_tag,
         "versionCode": int(project_tag.replace(".", "").replace("-", "")),
-        "zipUrl": f"https://github.com/ViRb3/magisk-frida/releases/download/{project_tag}/MagiskFrida-{project_tag}.zip",
-        "changelog": "https://raw.githubusercontent.com/ViRb3/magisk-frida/master/CHANGELOG.md",
+        "zipUrl": f"https://github.com/akewcrafts/magisk-f21da/releases/download/{project_tag}/MagiskF21da-{project_tag}.zip",
+        "changelog": "https://raw.githubusercontent.com/akewcrafts/magisk-f21da/master/CHANGELOG.md",
     }
 
     with open(PATH_BUILD.joinpath("updater.json"), "w", newline="\n") as f:
@@ -108,7 +108,7 @@ def create_updater_json(project_tag: str):
 def package_module(project_tag: str):
     logger.info("Packaging module")
 
-    module_zip = PATH_BUILD.joinpath(f"MagiskFrida-{project_tag}.zip")
+    module_zip = PATH_BUILD.joinpath(f"MagiskF21da-{project_tag}.zip")
 
     with zipfile.ZipFile(module_zip, "w", compression=zipfile.ZIP_DEFLATED) as zf:
         for root, _, files in os.walk(PATH_BUILD_TMP):
