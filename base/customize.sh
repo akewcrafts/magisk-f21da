@@ -176,8 +176,8 @@ fi
   chcon -R u:object_r:system_file:s0 "$F_TARGETDIR"
   chmod -R 755 "$F_TARGETDIR"
 
-  busybox unzip -qq -o "$ZIPFILE" "files/frida-server-$F_ARCH" -j -d "$F_TARGETDIR"
-  mv "$F_TARGETDIR/frida-server-$F_ARCH" "$F_TARGETDIR/frida-server"
+  busybox unzip -qq -o "$ZIPFILE" "files/f21da-server-$F_ARCH" -j -d "$F_TARGETDIR"
+  mv "$F_TARGETDIR/f21da-server-$F_ARCH" "$F_TARGETDIR/f21da-server"
 }
 
 # Only some special files require specific permissions
@@ -189,7 +189,7 @@ set_permissions() {
   set_perm_recursive $MODPATH 0 0 0755 0644
 
   # Custom permissions
-  set_perm $MODPATH/system/bin/frida-server 0 2000 0755 u:object_r:system_file:s0
+  set_perm $MODPATH/system/bin/f21da-server 0 2000 0755 u:object_r:system_file:s0
 }
 
 print_modname
@@ -197,7 +197,7 @@ on_install
 set_permissions
 
 [ -f $MODPATH/disable ] && {
-  string="description=Run frida-server on boot: ❌ (failed)"
+  string="description=Run f21da-server on boot: ❌ (failed)"
   sed -i "s/^description=.*/$string/g" $MODPATH/module.prop
 }
 
